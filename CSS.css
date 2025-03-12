@@ -1,0 +1,201 @@
+:root {
+    --var1: #edafb8;
+    --var2: #f7e1d7;
+    --var3: #dedbd2;
+    --var4: #b0c4b1;
+    --var5: #4a5759;
+    --img: url('./pic1/OR4CF50.jpg'); /* Make sure you define the image URL */
+}
+
+section {
+    padding: 50px 10%;
+}
+
+*::selection {
+    color: #fff;
+    background: var(--var1);
+}
+
+body {
+    min-height: 100vh;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: center;
+    background-color: #393965;
+    background-color: var(--background-blue, #393965);
+    color: white;
+    font-size: 14px;
+    line-height: 19px;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 20px;
+}
+
+div#main {
+    width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px 32px;
+    background-color: var(--var4);
+    border-style: solid;
+    border-color: white;
+    border-color: var(--var5);
+    border-width: 2px;
+    border-width: var(--game-content-border-width, 2px);
+    border-radius: 10px;
+    border-radius: var(--game-content-border-radius, 10px);
+    color: var(--var5);
+}
+
+.main .logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.main img {
+    max-width: 100%;
+    height: auto;
+}
+
+.main .custom-hr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .custom-hr .img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.main p {
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main p {
+    color: var();
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 0.5fr;
+    gap: 1em;
+    width: 800px;
+    height: 500px;
+    transition: all 400ms;
+}
+
+.container:hover .box {
+    filter: grayscale(100%) opacity(24%);
+}
+
+.box {
+    position: relative;
+    background: var(--img) center center;
+    background-size: cover;
+    transition: all 400ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .box:hover {
+    filter: grayscale(0%) opacity(100%);
+}
+
+.container:has(.box-1:hover) {
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-2:hover) {
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-3:hover) {
+    grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+}
+
+.container:has(.box-4:hover) {
+    grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
+}
+
+.container:has(.box-5:hover) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
+}
+
+.box:nth-child(odd) {
+    transform: translateY(-16px);
+}
+
+.box::after {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #fff;
+    padding: 10px 10px 10px 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transform: translateY(60px); /* Initially hidden below the box */
+    opacity: 0; /* Initially hidden */
+    transition: all 400ms ease-in-out;
+    text-align: center;
+}
+
+.box:hover::after {
+    transform: translateY(0); /* Move it into view */
+    opacity: 1; /* Fade in */
+}
+
+@media (max-width: 832px) {
+    div#main {
+        width: calc(100% - 40px) !important;
+        padding: 16px 16px !important;
+    }
+    .main p {
+        text-align: center;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columns for medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr; /* 3 columns for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* 2 columns for smaller tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        grid-template-columns: 1fr; /* 1 column for mobile */
+        width: 100%; /* Ensure the container takes full width */
+    }
+
+    .container .box {
+        background-size: cover; /* Ensure images fit well on mobile */
+    }
+}
